@@ -32,7 +32,7 @@ bot.on('message', message => {
           body: {
               search: args[1]
           },
-          json: true // Automatically stringifies the body to JSON
+          json: true
       };
 
       rp(options)
