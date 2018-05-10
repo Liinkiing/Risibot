@@ -29,9 +29,9 @@ bot.on('message', message => {
                       message.channel.send("Random Risitas for: "+ args[1], {
                           file: body.stickers[randomPic].risibank_link
                       });
-                  }
-              } else {
+                  } else {
                   message.channel.send("ISSOU y'a 0 photo pour ta recherche !");
+                }
               }
           }
       );
