@@ -2,8 +2,11 @@ const Discord = require('discord.js');
 const request = require('request');
 const bot = new Discord.Client();
 
+const error404 = "*ISSOU y'a 0 photo pour ta recherche !*";
+const error503 = "*Problème d'api, retry stp*";
+
 bot.on('ready', function () {
-  console.log("Je suis connecté !")
+  console.log("Risibot connected !")
 });
 
 bot.login('NDQyNzk2OTc2Njc3OTc4MTEy.DdM3Eg._KcG5jUTeJHRd3EDhvHDWIFQYsI');
@@ -26,12 +29,16 @@ bot.on('message', message => {
                   if(body.stickers.length > 0) {
                       let randomPic = Math.floor(Math.random() * Math.floor(body.stickers.length));
 
-                      message.channel.send("Random Risitas for: "+ args[1], {
-                          file: body.stickers[randomPic].risibank_link
-                      });
+                      if(body.stickers[randomPic].risibank_link) {
+                          message.channel.send("Random Risitas for: "+ args[1], {
+                              file: body.stickers[randomPic].risibank_link
+                          });
+                      } else {
+                          message.channel.send(error404);
+                      }
                   } else {
-                  message.channel.send("ISSOU y'a 0 photo pour ta recherche !");
-                }
+                      message.channel.send(error404);
+                  }
               }
           }
       );
