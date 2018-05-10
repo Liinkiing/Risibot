@@ -1,5 +1,4 @@
 const Discord = require('discord.js');
-const YoutubeStream = require('ytdl-core');
 const request = require('request');
 const bot = new Discord.Client();
 
