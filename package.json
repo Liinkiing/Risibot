@@ -1,0 +1,20 @@
+{
+  "name": "risibot",
+  "version": "1.0.0",
+  "description": "Le bot de l'élite de la nation",
+  "main": "index.js",
+  "scripts": {
+    "start": "node --experimental-modules index.mjs"
+  },
+  "repository": "git@github.com:Liinkiing/Risibot.git",
+  "author": "Omar Jbara <omar.Jbara2@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "discord.js": "^11.3.2",
+    "dotenv": "^6.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.0.1"
+  }
+}
