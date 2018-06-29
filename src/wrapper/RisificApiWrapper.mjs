@@ -4,7 +4,6 @@ class RisificApiWrapper {
 
 	constructor () {
 		this.baseUrl= process.env.RISIBOT_API
-		console.log(this.baseUrl)
 	}
 
 	async getAllPost () {
