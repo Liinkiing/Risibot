@@ -4,7 +4,7 @@
   "description": "Le bot de l'élite de la nation",
   "main": "index.js",
   "scripts": {
-    "start": "node --experimental-modules index.mjs"
+    "start": "node --require dotenv/config --experimental-modules index.mjs"
   },
   "repository": "git@github.com:Liinkiing/Risibot.git",
   "author": "Omar Jbara <omar.Jbara2@gmail.com>",

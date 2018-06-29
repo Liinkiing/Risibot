@@ -14,6 +14,9 @@ class RisitasBot {
 		command.parameters.forEach(parameter => {
 			help += ` ${parameter.options.required ? '<' : '['}${parameter.name}${parameter.options.required ? '>' : ']'}`
 		})
+		command.modifiers.forEach(modifier => {
+			help += ` --${modifier}`
+		})
 		help += ` ${command.description ? '- **' + command.description + '**' : ''}\n`
 		return help
 	}
@@ -34,10 +37,14 @@ Voici la liste des commandes \n`
 
 	onMessage (message) {
 		if (!message.content.startsWith(this.commandPrefix)) return
-		const name = message.content.substring(1)
+		const cmd = {...message}.content.substring(1).firstWord()
 		this.commands.some(command => {
-			if (command.name.toLowerCase() === name.toLowerCase()) {
-				command.action(command.parameters, this, message)
+			if (command.name.toLowerCase() === cmd.toLowerCase()) {
+				let modifiers = []
+				command.modifiers.forEach(modifier => {
+					if (message.content.toLowerCase().includes('--' + modifier.toLowerCase())) modifiers.push(modifier)
+				})
+				command.action(command.parameters, modifiers, this, message)
 				return true
 			}
 		})

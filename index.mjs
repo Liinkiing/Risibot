@@ -1,14 +1,12 @@
 /* eslint-disable no-console */
-import dotenv from 'dotenv'
+import './src/utils/functions'
 import RisitasBot from './src/bot/RisitasBot'
 import {helpCmd, gangeCmd, issouCmd, pierreCmd} from './src/commands/general'
-
-
-dotenv.config()
+import {randomFicCmd} from './src/commands/risific'
 
 const bot = new RisitasBot()
 bot.commandPrefix = '!'
 
-bot.addCommands([helpCmd, gangeCmd, issouCmd, pierreCmd])
+bot.addCommands([helpCmd, randomFicCmd, gangeCmd, issouCmd, pierreCmd])
 
 bot.run()

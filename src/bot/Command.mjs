@@ -10,6 +10,7 @@ export default class Command {
 		this.action = action
 		this.description = description
 		this.parameters = []
+		this.modifiers = []
 	}
 
 	addParameter (name, options) {
@@ -21,5 +22,14 @@ export default class Command {
 
 		return this
 	}
+
+	addModifier (name) {
+		this.modifiers.push(name)
+		this.modifiers.unique()
+
+		return this
+	}
+
+
 
 }
