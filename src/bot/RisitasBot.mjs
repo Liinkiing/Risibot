@@ -13,7 +13,7 @@ export default class RisitasBot {
 	displayCommandInfo (command) {
 		let help = `- ${this.commandPrefix}${italic(command.name)}`
 		command.parameters.forEach(parameter => {
-			help += ` ${parameter.options.required ? '<' : '['}${parameter.name}${parameter.options.required ? '>' : ']'}`
+			help += ` "${parameter.options.required ? '<' : '['}${parameter.name}${parameter.options.required ? '>' : ']'}"`
 		})
 		command.modifiers.forEach(modifier => {
 			help += ` --${modifier}`
@@ -41,11 +41,15 @@ Voici la liste des commandes \n`
 		const cmd = {...message}.content.substring(1).firstWord()
 		this.commands.some(command => {
 			if (command.name.toLowerCase() === cmd.toLowerCase()) {
+				let parameters = {}
 				let modifiers = []
 				command.modifiers.forEach(modifier => {
 					if (message.content.toLowerCase().includes('--' + modifier.toLowerCase())) modifiers.push(modifier)
 				})
-				command.action(command.parameters, modifiers, this, message)
+				if (command.parameters.length) {
+					parameters[command.parameters[0].name] = message.content.extractFromQuote() || null
+				}
+				command.action(parameters, modifiers, this, message)
 				return true
 			}
 		})
